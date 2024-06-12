@@ -26,7 +26,7 @@ class ControlHorarioController extends Controller
     public function destroy($id){
         $registro = ControlHorario::find($id);
         $registro->delete();
-        response()->json("Registro borrada con exito");
+        response()->json("Registro borrado con exito");
     }
 
     public function find($id){

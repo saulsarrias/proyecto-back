@@ -18,7 +18,7 @@ class ControlHorario extends Model
         'Fecha_Hora_Salida',
     ];
 
-    // Define la relación con el modelo de Empleado
+
     public function empleado()
     {
         return $this->belongsTo(User::class, 'id_user', 'id');

@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\LineaFacturaController;
 use App\Http\Controllers\InventarioMaterialesController;
+use \App\Http\Controllers\ControlHorarioController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,13 +22,12 @@ use App\Http\Controllers\InventarioMaterialesController;
 |
 */
 
-Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);
-Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function (){
-
-    Route::get('user', [\App\Http\Controllers\AuthController::class, 'user']);
-    Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+    Route::get('user', [AuthController::class, 'user']);
+    Route::post('logout', [AuthController::class, 'logout']);
     Route::get('/users', [UserController::class, 'index']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
@@ -50,7 +50,6 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::put('/facturas/{id}', [FacturaController::class, 'update']);
     Route::delete('/facturas/{id}', [FacturaController::class, 'destroy']);
 
-
     Route::get('/lineas-factura', [LineaFacturaController::class, 'index']);
     Route::post('/lineas-factura/store', [LineaFacturaController::class, 'store']);
     Route::get('/lineas-factura/{id}', [LineaFacturaController::class, 'getById']);
@@ -58,11 +57,11 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::delete('/lineas-factura/{id}', [LineaFacturaController::class, 'destroy']);
 
 
-    /*Route::get('/inventario', [InventarioMaterialesController::class, 'index']);
+    Route::get('/inventario', [InventarioMaterialesController::class, 'index']);
     Route::post('/inventario/store', [InventarioMaterialesController::class, 'store']);
     Route::get('/inventario/find', [InventarioMaterialesController::class, 'find']);
     Route::put('/inventario/{id}', [InventarioMaterialesController::class, 'update']);
-    Route::delete('/inventario/{id}', [InventarioMaterialesController::class, 'destroy']);*/
+    Route::delete('/inventario/{id}', [InventarioMaterialesController::class, 'destroy']);
 
 
     Route::get('/partes', [ParteTrabajoController::class, 'index']);
@@ -77,17 +76,12 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::put('/tareas/{id}', [TareaController::class, 'update']);
     Route::delete('/tareas/{id}', [TareaController::class, 'destroy']);
 
-    Route::get('/registro', [TareaController::class, 'index']);
-    Route::post('/registro/store', [TareaController::class, 'store']);
-    Route::get('/registro/{id}', [TareaController::class, 'find']);
-    Route::put('/registro/{id}', [TareaController::class, 'update']);
-    Route::delete('/registro/{id}', [TareaController::class, 'destroy']);
+    /*Route::get('/registro', [ControlHorarioController::class, 'index']);
+    Route::post('/registro/store', [ControlHorarioController::class, 'store']);
+    Route::get('/registro/{id}', [ControlHorarioController::class, 'find']);
+    Route::put('/registro/{id}', [ControlHorarioController::class, 'update']);
+    Route::delete('/registro/{id}', [ControlHorarioController::class, 'destroy']);*/
 
 });
 
-Route::get('/inventario', [InventarioMaterialesController::class, 'index']);
-Route::post('/inventario/store', [InventarioMaterialesController::class, 'store']);
-Route::get('/inventario/find', [InventarioMaterialesController::class, 'find']);
-Route::put('/inventario/{id}', [InventarioMaterialesController::class, 'update']);
-Route::delete('/inventario/{id}', [InventarioMaterialesController::class, 'destroy']);
 
